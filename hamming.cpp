@@ -23,7 +23,7 @@ int main()
 	cout << toHammingCode(num, true) << endl << endl;
 
 	system("PAUSE");
-    return 0;
+	return 0;
 }
 
 
