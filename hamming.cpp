@@ -127,6 +127,11 @@ string decimalToBinary(int n)
 {
 	string r;
 
+	if (n == 0)
+	{
+		r = "0";
+	}
+
 	while (n != 0)
 	{
 		r = (n % 2 == 0 ? "0" : "1") + r;
@@ -138,7 +143,7 @@ string decimalToBinary(int n)
 
 string correctDataBitsLength(string str)
 {
-	int parityBits = 1;
+	int parityBits = 2;
 	int dataBits = 0;
 
 	while(true)
