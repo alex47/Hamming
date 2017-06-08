@@ -4,13 +4,14 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include <math.h>
 
 using namespace std;
 
 string decimalToBinary(int n);
 string toHammingFormat(string binaryNum);
 string toHammingCode(int num, bool isEvenParity);
-string toByteSized(string str);
+string correctDataBitsLength(string str);
 bool numOfOnesIsEven(int parityBitIndex, string hammingCodedString);
 
 int main()
@@ -132,16 +133,28 @@ string decimalToBinary(int n)
 		n /= 2;
 	}
 
-	return toByteSized(r);
+	return correctDataBitsLength(r);
 }
 
-string toByteSized(string str)
+string correctDataBitsLength(string str)
 {
-	int size = 4;
+	int parityBits = 1;
+	int dataBits = 0;
 
-	if (str.length() % size > 0)
+	while(true)
 	{
-		str = string(size - (str.length() % size), '0') + str;
+		parityBits++;
+		dataBits = pow(2, parityBits) - parityBits - 1;
+
+		if (str.length() <= dataBits)
+		{
+			break;
+		}
+	}
+
+	if (str.length() % dataBits > 0)
+	{
+		str = string(dataBits - (str.length() % dataBits), '0') + str;
 	}
 	
 	return str;
